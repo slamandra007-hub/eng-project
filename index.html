@@ -19,8 +19,11 @@ button{cursor:pointer;border:0}
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
 h1{margin:0;font-size:30px}
 .subtitle{color:#777;margin-top:6px}
-.page{display:none}
-.page.active{display:block}
+
+/* Важливо для перемикання сторінок */
+.page {display:none !important}
+.page.active {display:block !important}
+
 .card{background:#fff;border:1px solid #e7e8ee;border-radius:16px;padding:22px;margin-bottom:20px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 input,textarea{width:100%;border:1px solid #dddfea;border-radius:10px;padding:12px 14px;outline:none;background:#fff}
@@ -39,7 +42,7 @@ label{font-size:13px;color:#666;display:block;margin-bottom:7px}
 .muted{color:#777;font-size:14px}
 .badge{display:inline-block;background:#f0efff;color:#6256d8;padding:4px 8px;border-radius:7px;font-size:12px;margin-top:6px}
 .flashcard{max-width:600px;margin:30px auto;text-align:center}
-.flash-inner{min-height:260px;border:1px solid #e2e2eb;border-radius:18px;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px}
+.flash-inner{min-height:260px;border:1px solid #e2e2eb;border-radius:18px;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px;cursor:pointer}
 .flash-word{font-size:40px;font-weight:800}
 .flash-translation{font-size:23px;color:#7467f0;margin-top:20px;min-height:32px}
 .stats{display:flex;justify-content:center;gap:30px;color:#777;margin:18px}
@@ -53,38 +56,44 @@ label{font-size:13px;color:#666;display:block;margin-bottom:7px}
 .app{display:block}.main{margin:0;width:100%;padding:25px 16px}.form-grid,.correction{grid-template-columns:1fr}.full{grid-column:auto}
 }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://jsdelivr.net"></script>
 <script>
-const SUPABASE_URL = "https://qaglzghxodtsmfwbofqu.supabase.co";
-const SUPABASE_KEY = "sb_publishable_f7ae6u4JA3-x2lK3fajoIg_AxI4O2S_";
+const SUPABASE_URL = "https://supabase.co";
+const SUPABASE_KEY = "sb_publishable_f7ae6u4JA3-x2lK3fajoIg_AxI4O2S_"; // Обов'язково замініть на ваш anon key, якщо цей не підключить базу
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
 </head>
 <body>
+
 <div id="authScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f6f7fb;padding:20px">
   <div class="card" style="width:100%;max-width:420px">
     <h1 style="margin-bottom:8px">English<span style="color:#7467f0">Study</span></h1>
     <p class="subtitle" style="margin-bottom:22px">Sign in to sync your vocabulary, grammar and writing.</p>
     <label>Email</label><input id="authEmail" type="email" placeholder="you@example.com">
     <label style="margin-top:14px">Password</label><input id="authPassword" type="password" placeholder="Password">
-    <div class="actions"><button class="primary" onclick="signIn()">Sign in</button><button class="secondary" onclick="signUp()">Create account</button></div>
+    <div class="actions">
+      <button class="primary" onclick="handleAuth('signIn')">Sign in</button>
+      <button class="secondary" onclick="handleAuth('signUp')">Create account</button>
+    </div>
     <div id="authMessage" class="notice" style="display:none"></div>
   </div>
 </div>
+
 <div id="appShell" class="app" style="display:none">
 <aside class="sidebar">
   <div class="logo">English<span>Study</span></div>
   <nav class="nav">
-    <button class="active" data-page="vocabulary">📚 Vocabulary</button>
-    <button data-page="grammar">📖 Grammar</button>
-    <button data-page="writing">✍️ Writing</button>
+    <button class="nav-btn active" id="btn-vocabulary" onclick="switchPage('vocabulary')">📚 Vocabulary</button>
+    <button class="nav-btn" id="btn-grammar" onclick="switchPage('grammar')">📖 Grammar</button>
+    <button class="nav-btn" id="btn-writing" onclick="switchPage('writing')">✍️ Writing</button>
+    <button class="danger" style="margin-top:20px; width:100%; text-align:left;" onclick="signOut()">🚪 Logout</button>
   </nav>
 </aside>
 
 <main class="main">
+<!-- Сторінка 1: Vocabulary -->
 <section id="vocabulary" class="page active">
   <div class="header"><div><h1>Vocabulary</h1><div class="subtitle">Build your personal English dictionary.</div></div></div>
-
   <div class="card">
     <div class="form-grid">
       <div><label>English word</label><input id="word" placeholder="e.g. improve"></div>
@@ -92,12 +101,10 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     </div>
     <div class="actions"><button class="primary" onclick="saveWord()">Save word</button></div>
   </div>
-
   <div class="card">
     <input class="search" id="wordSearch" oninput="renderWords()" placeholder="🔍 Search word or translation...">
     <div id="wordList" class="word-list"></div>
   </div>
-
   <div class="card">
     <h2>Flashcards</h2>
     <p class="muted">Practice your saved vocabulary.</p>
@@ -115,6 +122,7 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   </div>
 </section>
 
+<!-- Сторінка 2: Grammar -->
 <section id="grammar" class="page">
   <div class="header"><div><h1>Grammar</h1><div class="subtitle">Keep all your grammar rules in one place.</div></div></div>
   <div class="card">
@@ -131,15 +139,14 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   </div>
 </section>
 
+<!-- Сторінка 3: Writing -->
 <section id="writing" class="page">
   <div class="header"><div><h1>Writing</h1><div class="subtitle">Write, save and review your English texts.</div></div></div>
   <div class="card">
-    <label>Text title</label>
-    <input id="writingTitle" placeholder="e.g. My summer">
-    <label style="margin-top:15px">Your text</label>
-    <textarea id="writingText" style="min-height:230px" placeholder="Write your English text here..."></textarea>
+    <label>Text title</label><input id="writingTitle" placeholder="e.g. My summer">
+    <label style="margin-top:15px">Your text</label><textarea id="writingText" style="min-height:230px" placeholder="Write your English text here..."></textarea>
     <div class="actions">
-      <button class="primary" onclick="checkWriting()">Check writing</button>
+      <button class="primary" onclick="checkWriting()">Check length</button>
       <button class="secondary" onclick="saveWriting()">Save text</button>
     </div>
     <div id="checkResult"></div>
@@ -153,188 +160,36 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </div>
 
 <script>
-let words=[], rules=[], writings=[];
-let currentUser=null;
-let editingWordId=null, editingRuleId=null, editingWritingId=null;
-let flashIndex=0, flashShown=false;
+let words = [], rules = [], writings = [];
+let currentUser = null;
+let currentFlashIndex = 0;
 
-document.querySelectorAll('.nav button').forEach(btn=>{
-  btn.onclick=()=>{
-    document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById(btn.dataset.page).classList.add('active');
-    if(btn.dataset.page==='vocabulary') updateFlashcard();
-  };
+// Слухач авторизації
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    currentUser = session.user;
+    document.getElementById('authScreen').style.display = 'none';
+    document.getElementById('appShell').style.display = 'flex';
+    loadData();
+  } else {
+    currentUser = null;
+    document.getElementById('authScreen').style.display = 'flex';
+    document.getElementById('appShell').style.display = 'none';
+  }
 });
 
-async function saveWord(){
-  const word=document.getElementById('word').value.trim(), translation=document.getElementById('translation').value.trim();
-  if(!currentUser){alert('You are not signed in.');return;}
-  if(!word||!translation){alert('Please enter both the word and translation.');return;}
-  let result;
-  if(editingWordId){
-    result=await supabaseClient.from('vocabulary').update({word,translation}).eq('id',editingWordId).eq('user_id',currentUser.id);
-  }else{
-    result=await supabaseClient.from('vocabulary').insert({user_id:currentUser.id,word,translation});
-  }
-  if(result.error){console.error('Supabase vocabulary error:',result.error);alert('Помилка збереження: '+result.error.message);return;}
-  editingWordId=null;
-  document.getElementById('word').value='';
-  document.getElementById('translation').value='';
-  document.querySelector('[onclick="saveWord()"]').textContent='Зберегти слово';
-  await loadData();
-}
-async function deleteWord(id){const {error}=await supabaseClient.from('vocabulary').delete().eq('id',id);if(error)alert(error.message);else await loadData();}
-function renderWords(){
-  const q=document.getElementById('wordSearch').value.toLowerCase(), list=document.getElementById('wordList');
-  const filtered=words.filter(x=>(x.word+' '+x.translation).toLowerCase().includes(q));
-  list.innerHTML=filtered.length?filtered.map(x=>`<div class="item"><div><strong>${esc(x.word)}</strong><div class="muted">${esc(x.translation)}</div></div><div class="actions" style="margin:0"><button class="secondary" onclick="editWord(${x.id})">Edit</button><button class="danger" onclick="deleteWord(${x.id})">Delete</button></div></div>`).join(''):'<div class="empty">No words found.</div>';
-}
-function updateFlashcard(){if(flashIndex>=words.length)flashIndex=0;const w=words[flashIndex];document.getElementById('flashWord').textContent=w?w.word:'No words yet';document.getElementById('flashTranslation').textContent='';document.getElementById('cardNumber').textContent=words.length?`${flashIndex+1} / ${words.length}`:'0 / 0';flashShown=false;}
-function showTranslation(){if(!words.length)return;flashShown=!flashShown;document.getElementById('flashTranslation').textContent=flashShown?words[flashIndex].translation:'';}
-function nextCard(){if(!words.length)return;flashIndex=(flashIndex+1)%words.length;updateFlashcard();}
+async function handleAuth(type) {
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value.trim();
+  const msgDiv = document.getElementById('authMessage');
+  if(!email || !password) return;
+  msgDiv.style.display = 'block';
+  msgDiv.innerText = "Processing...";
 
-async function saveRule(){
-  const title=document.getElementById('ruleTitle').value.trim(), text=document.getElementById('ruleText').value.trim(), examples=document.getElementById('ruleExamples').value.trim();
-  if(!currentUser){alert('You are not signed in.');return;}
-  if(!title||!text){alert('Please enter a title and rule.');return;}
-  let result;
-  if(editingRuleId){
-    result=await supabaseClient.from('grammar').update({title,rule:text,examples}).eq('id',editingRuleId).eq('user_id',currentUser.id);
-  }else{
-    result=await supabaseClient.from('grammar').insert({user_id:currentUser.id,title,rule:text,examples});
-  }
-  if(result.error){console.error('Supabase grammar error:',result.error);alert('Помилка збереження: '+result.error.message);return;}
-  editingRuleId=null;
-  document.getElementById('ruleTitle').value='';
-  document.getElementById('ruleText').value='';
-  document.getElementById('ruleExamples').value='';
-  document.querySelector('[onclick="saveRule()"]').textContent='Зберегти правило';
-  await loadData();
-}
-async function deleteRule(id){const {error}=await supabaseClient.from('grammar').delete().eq('id',id);if(error)alert(error.message);else await loadData();}
-function renderRules(){
-  const q=document.getElementById('ruleSearch').value.toLowerCase(),list=document.getElementById('ruleList');
-  const filtered=rules.filter(x=>(x.title+' '+x.text+' '+(x.examples||'')).toLowerCase().includes(q));
-  list.innerHTML=filtered.length?filtered.map(x=>`<div class="item"><div><strong>${esc(x.title)}</strong><div class="muted" style="white-space:pre-wrap;margin-top:8px">${esc(x.text)}</div>${x.examples?`<div class="badge">Examples</div><div class="muted" style="white-space:pre-wrap;margin-top:5px">${esc(x.examples)}</div>`:''}</div><div class="actions" style="margin:0"><button class="secondary" onclick="editRule(${x.id})">Edit</button><button class="danger" onclick="deleteRule(${x.id})">Delete</button></div></div>`).join(''):'<div class="empty">No grammar rules found.</div>';
-}
+  const { data, error } = type === 'signUp' 
+    ? await supabaseClient.auth.signUp({ email, password })
+    : await supabaseClient.auth.signInWithPassword({ email, password });
 
-async function saveWriting(){
-  const title=document.getElementById('writingTitle').value.trim(),text=document.getElementById('writingText').value.trim();
-  if(!currentUser){alert('You are not signed in.');return;}
-  if(!title||!text){alert('Please enter a title and text.');return;}
-  let result;
-  if(editingWritingId){
-    result=await supabaseClient.from('writings').update({title,original_text:text}).eq('id',editingWritingId).eq('user_id',currentUser.id);
-  }else{
-    result=await supabaseClient.from('writings').insert({user_id:currentUser.id,title,original_text:text,corrected_text:''});
-  }
-  if(result.error){console.error('Supabase writing error:',result.error);alert('Помилка збереження: '+result.error.message);return;}
-  editingWritingId=null;
-  document.getElementById('writingTitle').value='';
-  document.getElementById('writingText').value='';
-  document.getElementById('checkResult').innerHTML='<div class="notice">Текст збережено.</div>';
-  document.querySelector('[onclick="saveWriting()"]').textContent='Зберегти текст';
-  await loadData();
-}
-async function deleteWriting(id){const {error}=await supabaseClient.from('writings').delete().eq('id',id);if(error)alert(error.message);else await loadData();}
-function renderWritings(){
-  const list=document.getElementById('writingList');
-  list.innerHTML=writings.length?writings.slice().reverse().map(x=>`<div class="item"><div style="flex:1"><strong>${esc(x.title)}</strong><div class="muted" style="white-space:pre-wrap;margin-top:8px">${esc(x.original_text)}</div>${x.corrected_text?`<div class="badge">Corrected version</div><div class="muted" style="white-space:pre-wrap;margin-top:6px">${esc(x.corrected_text)}</div>`:''}</div><div class="actions" style="margin:0"><button class="secondary" onclick="editWriting(${x.id})">Edit</button><button class="danger" onclick="deleteWriting(${x.id})">Delete</button></div></div>`).join(''):'<div class="empty">No saved texts yet.</div>';
-}
-
-function editWord(id){
-  const x=words.find(w=>w.id===id); if(!x)return;
-  editingWordId=id;
-  document.getElementById('word').value=x.word;
-  document.getElementById('translation').value=x.translation;
-  document.querySelector('[onclick="saveWord()"]').textContent='Оновити слово';
-  document.getElementById('word').focus();
-}
-function editRule(id){
-  const x=rules.find(r=>r.id===id); if(!x)return;
-  editingRuleId=id;
-  document.getElementById('ruleTitle').value=x.title;
-  document.getElementById('ruleText').value=x.rule;
-  document.getElementById('ruleExamples').value=x.examples||'';
-  document.querySelector('[onclick="saveRule()"]').textContent='Оновити правило';
-  document.getElementById('ruleTitle').focus();
-}
-function editWriting(id){
-  const x=writings.find(w=>w.id===id); if(!x)return;
-  editingWritingId=id;
-  document.getElementById('writingTitle').value=x.title;
-  document.getElementById('writingText').value=x.original_text;
-  document.querySelector('[onclick="saveWriting()"]').textContent='Оновити текст';
-  document.getElementById('writingTitle').focus();
-}
-
-async function checkWriting(){
-  const text=document.getElementById('writingText').value.trim();if(!text){alert('Write a text first.');return;}
-  let corrected=text.replace(/\bi am\b/g,'I am').replace(/\bi\b/g,'I').replace(/\s{2,}/g,' ');
-  corrected=corrected.split(/(?<=[.!?])\s+/).map(s=>s?s.charAt(0).toUpperCase()+s.slice(1):s).join(' ');
-  document.getElementById('checkResult').innerHTML=`<div class="correction"><div><label>Original</label><div class="text-box">${esc(text)}</div></div><div><label>Corrected</label><div class="text-box">${esc(corrected)}</div></div></div><div class="notice">This is a basic check, not a full grammar checker.</div>`;
-  const title=document.getElementById('writingTitle').value.trim()||'Untitled';
-  let result;
-  if(editingWritingId){
-    result=await supabaseClient.from('writings').update({title,original_text:text,corrected_text:corrected}).eq('id',editingWritingId).eq('user_id',currentUser.id);
-  }else{
-    result=await supabaseClient.from('writings').insert({user_id:currentUser.id,title,original_text:text,corrected_text:corrected});
-  }
-  if(result.error){console.error('Supabase writing check error:',result.error);alert('Помилка збереження: '+result.error.message);}
-  else await loadData();
-}
-
-async function loadData(){
-  if(!currentUser) return;
-  const [w,r,t]=await Promise.all([
-    supabaseClient.from('vocabulary').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:true}),
-    supabaseClient.from('grammar').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:true}),
-    supabaseClient.from('writings').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:true})
-  ]);
-  const err=w.error||r.error||t.error;
-  if(err){
-    console.error('Supabase load error:', err);
-    alert('Помилка завантаження: '+err.message);
-    return;
-  }
-  words=w.data||[];
-  rules=r.data||[];
-  writings=t.data||[];
-  renderWords();
-  renderRules();
-  renderWritings();
-  updateFlashcard();
-}
-async function signIn(){
-  const email=document.getElementById('authEmail').value.trim(),password=document.getElementById('authPassword').value;
-  const {error}=await supabaseClient.auth.signInWithPassword({email,password});showAuthMessage(error?error.message:'Signed in!');
-}
-async function signUp(){
-  const email=document.getElementById('authEmail').value.trim(),password=document.getElementById('authPassword').value;
-  if(password.length<6){showAuthMessage('Password must be at least 6 characters.');return;}
-  const {error}=await supabaseClient.auth.signUp({email,password});showAuthMessage(error?error.message:'Account created. Check your email if confirmation is enabled.');
-}
-function showAuthMessage(msg){const el=document.getElementById('authMessage');el.textContent=msg;el.style.display='block';}
-async function initApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error) console.error('Session error:',error);
-  currentUser=data?.session?.user||null;
-  document.getElementById('authScreen').style.display=currentUser?'none':'flex';
-  document.getElementById('appShell').style.display=currentUser?'flex':'none';
-  if(currentUser) await loadData();
-}
-supabaseClient.auth.onAuthStateChange(async(_event,session)=>{
-  currentUser=session?.user||null;
-  document.getElementById('authScreen').style.display=currentUser?'none':'flex';
-  document.getElementById('appShell').style.display=currentUser?'flex':'none';
-  if(currentUser) await loadData();
-});
-
-function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-
-initApp();
-</script>
-</body>
-</html>
+  if (error) {
+    msgDiv.innerText = "Error: " + error.message;
+  } else { msgDiv.innerText = type === 'signUp' ? "Registration successful! Check your email." : "Logged in successfully!";}}async function signOut() {await supabaseClient.auth.signOut();}// Логіка чіткого перемикання між вкладкамиfunction switchPage(pageId) {// Ховаємо всі секції сторінокdocument.querySelectorAll('.page').forEach(p => {p.classList.remove('active');});// Знімаємо підсвічування з усіх кнопокdocument.querySelectorAll('.nav button').forEach(b => {b.classList.remove('active');});// Активуємо потрібну сторінку та кнопкуdocument.getElementById(pageId).classList.add('active');document.getElementById('btn-' + pageId).classList.add('active');}async function loadData() {if (!currentUser) return;const wRes = await supabaseClient.from('words').select('*').eq('user_id', currentUser.id);if (!wRes.error) words = wRes.data || [];const rRes = await supabaseClient.from('rules').select('*').eq('user_id', currentUser.id);if (!rRes.error) rules = rRes.data || [];const wrRes = await supabaseClient.from('writings').select('*').eq('user_id', currentUser.id);if (!wrRes.error) writings = wrRes.data || [];renderWords();renderRules();renderWritings();initFlashcards();}// Логіка Vocabularyasync function saveWord() {const word = document.getElementById('word').value.trim();const translation = document.getElementById('translation').value.trim();if(!word || !translation) return;const { error } = await supabaseClient.from('words').insert([{ word, translation, user_id: currentUser.id }]);if(!error) {document.getElementById('word').value = '';document.getElementById('translation').value = '';loadData();}}function renderWords() {const query = document.getElementById('wordSearch').value.toLowerCase();const list = document.getElementById('wordList');list.innerHTML = '';const filtered = words.filter(w => w.word.toLowerCase().includes(query) || w.translation.toLowerCase().includes(query));if(filtered.length === 0) { list.innerHTML = 'No words found'; return; }filtered.forEach(w => {const div = document.createElement('div');div.className = 'item';div.innerHTML = <div><strong>${w.word}</strong><div class="muted">${w.translation}</div></div><button class="danger" onclick="deleteItem('words', '${w.id}')">Delete</button>;list.appendChild(div);});}// Флеш-карткиfunction initFlashcards() {currentFlashIndex = 0;updateFlashcard();}function updateFlashcard() {const numSpan = document.getElementById('cardNumber');const wordDiv = document.getElementById('flashWord');const transDiv = document.getElementById('flashTranslation');transDiv.innerText = '';if(words.length === 0) {numSpan.innerText = "0 / 0";wordDiv.innerText = "No words yet";return;}numSpan.innerText = ${currentFlashIndex + 1} / ${words.length};wordDiv.innerText = words[currentFlashIndex].word;}function showTranslation() {if(words.length === 0) return;document.getElementById('flashTranslation').innerText = words[currentFlashIndex].translation;}function nextCard() {if(words.length === 0) return;currentFlashIndex = (currentFlashIndex + 1) % words.length;updateFlashcard();}// Логіка Grammarasync function saveRule() {const title = document.getElementById('ruleTitle').value.trim();const rule = document.getElementById('ruleText').value.trim();const examples = document.getElementById('ruleExamples').value.trim();if(!title || !rule) return;const { error } = await supabaseClient.from('rules').insert([{ title, rule, examples, user_id: currentUser.id }]);if(!error) {document.getElementById('ruleTitle').value = '';document.getElementById('ruleText').value = '';document.getElementById('ruleExamples').value = '';loadData();}}function renderRules() {const query = document.getElementById('ruleSearch').value.toLowerCase();const list = document.getElementById('ruleList');list.innerHTML = '';const filtered = rules.filter(r => r.title.toLowerCase().includes(query) || r.rule.toLowerCase().includes(query));if(filtered.length === 0) { list.innerHTML = 'No rules found'; return; }filtered.forEach(r => {const div = document.createElement('div');div.className = 'item';div.innerHTML = <div style="width:100%"><strong>${r.title}</strong><p class="muted" style="margin:5px 0">${r.rule}</p><div class="badge">Examples:</div><pre style="white-space:pre-wrap;margin:5px 0;font-size:13px">${r.examples || ''}</pre></div><button class="danger" onclick="deleteItem('rules', '${r.id}')">Delete</button>;list.appendChild(div);});}// Логіка Writingasync function saveWriting() {const title = document.getElementById('writingTitle').value.trim();const text = document.getElementById('writingText').value.trim();if(!title || !text) return;const { error } = await supabaseClient.from('writings').insert([{ title, text, user_id: currentUser.id }]);if(!error) {document.getElementById('writingTitle').value = '';document.getElementById('writingText').value = '';loadData();}}function renderWritings() {const list = document.getElementById('writingList');list.innerHTML = '';if(writings.length === 0) { list.innerHTML = 'No texts saved yet'; return; }writings.forEach(w => {const div = document.createElement('div');div.className = 'item';div.innerHTML = <div style="width:100%"><strong>${w.title}</strong><p class="muted" style="white-space:pre-wrap;margin-top:5px">${w.text}</p></div><button class="danger" onclick="deleteItem('writings', '${w.id}')">Delete</button>;list.appendChild(div);});}function checkWriting() {const text = document.getElementById('writingText').value.trim();const result = document.getElementById('checkResult');if(!text) return;const wordsCount = text.split(/\s+/).filter(Boolean).length;result.innerHTML = <div class="notice">Your text has <strong>${wordsCount} words</strong> and ${text.length} characters.</div>;}async function deleteItem(table, id) {const { error } = await supabaseClient.from(table).delete().eq('id', id);if(!error) loadData();}
