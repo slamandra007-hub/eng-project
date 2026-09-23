@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,497 +7,562 @@
 <title>English Study</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#f6f7fb;
+  color:#20222a
 }
 
-body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: #f6f7fb;
-  color: #20222a;
+button,input,textarea{font:inherit}
+button{cursor:pointer;border:0}
+
+.app{
+  min-height:100vh;
+  display:flex
 }
 
-button,
-input,
-textarea {
-  font: inherit;
+.sidebar{
+  width:230px;
+  background:#fff;
+  border-right:1px solid #e7e8ee;
+  padding:28px 18px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0
 }
 
-button {
-  cursor: pointer;
-  border: 0;
+.logo{
+  font-size:22px;
+  font-weight:800;
+  margin:0 10px 35px
 }
 
-.app {
-  min-height: 100vh;
-  display: flex;
-}
+.logo span{color:#7467f0}
 
-.sidebar {
-  width: 230px;
-  background: #fff;
-  border-right: 1px solid #e7e8ee;
-  padding: 28px 18px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 1001;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 800;
-  margin: 0 10px 35px;
-}
-
-.logo span {
-  color: #7467f0;
-}
-
-.nav button {
-  width: 100%;
-  text-align: left;
-  background: none;
-  padding: 13px 12px;
-  border-radius: 10px;
-  margin: 3px 0;
-  color: #666;
-  transition: .2s;
+.nav button{
+  width:100%;
+  text-align:left;
+  background:none;
+  padding:13px 12px;
+  border-radius:10px;
+  margin:3px 0;
+  color:#666;
+  transition:.2s
 }
 
 .nav button:hover,
-.nav button.active {
-  background: #f0efff;
-  color: #6256d8;
-  font-weight: 600;
+.nav button.active{
+  background:#f0efff;
+  color:#6256d8;
+  font-weight:600
 }
 
-.main {
-  margin-left: 230px;
-  width: calc(100% - 230px);
-  padding: 38px 50px;
+.main{
+  margin-left:230px;
+  width:calc(100% - 230px);
+  padding:38px 50px
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:28px
 }
 
-h1 {
-  margin: 0;
-  font-size: 30px;
+h1{
+  margin:0;
+  font-size:30px
 }
 
-.subtitle {
-  color: #777;
-  margin-top: 6px;
+.subtitle{
+  color:#777;
+  margin-top:6px
 }
 
-.page {
-  display: none;
+.page{display:none}
+.page.active{display:block}
+
+.card{
+  background:#fff;
+  border:1px solid #e7e8ee;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:20px
 }
 
-.page.active {
-  display: block;
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px
 }
 
-.card {
-  background: #fff;
-  border: 1px solid #e7e8ee;
-  border-radius: 16px;
-  padding: 22px;
-  margin-bottom: 20px;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-input,
-textarea {
-  width: 100%;
-  border: 1px solid #dddfea;
-  border-radius: 10px;
-  padding: 12px 14px;
-  outline: none;
-  background: #fff;
+input,textarea{
+  width:100%;
+  border:1px solid #dddfea;
+  border-radius:10px;
+  padding:12px 14px;
+  outline:none;
+  background:#fff
 }
 
 input:focus,
-textarea:focus {
-  border-color: #7467f0;
+textarea:focus{
+  border-color:#7467f0
 }
 
-textarea {
-  min-height: 150px;
-  resize: vertical;
+textarea{
+  min-height:150px;
+  resize:vertical
 }
 
-label {
-  font-size: 13px;
-  color: #666;
-  display: block;
-  margin-bottom: 7px;
+label{
+  font-size:13px;
+  color:#666;
+  display:block;
+  margin-bottom:7px
 }
 
-.full {
-  grid-column: 1 / -1;
+.full{
+  grid-column:1/-1
 }
 
-.primary {
-  background: #7467f0;
-  color: #fff;
-  padding: 11px 17px;
-  border-radius: 10px;
-  font-weight: 600;
+.primary{
+  background:#7467f0;
+  color:#fff;
+  padding:11px 17px;
+  border-radius:10px;
+  font-weight:600
 }
 
-.secondary {
-  background: #eeeef5;
-  color: #444;
-  padding: 10px 15px;
-  border-radius: 10px;
+.secondary{
+  background:#eeeef5;
+  color:#444;
+  padding:10px 15px;
+  border-radius:10px
 }
 
-.danger {
-  background: #fff0f0;
-  color: #d34d4d;
-  padding: 8px 11px;
-  border-radius: 8px;
+.danger{
+  background:#fff0f0;
+  color:#d34d4d;
+  padding:8px 11px;
+  border-radius:8px
 }
 
-.actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 15px;
-  flex-wrap: wrap;
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+  flex-wrap:wrap
 }
 
-.search {
-  margin-bottom: 15px;
+.search{
+  margin-bottom:15px
 }
 
 .word-list,
 .rule-list,
-.writing-list {
-  display: grid;
-  gap: 10px;
+.writing-list{
+  display:grid;
+  gap:10px
 }
 
-.item {
-  border: 1px solid #e7e8ee;
-  border-radius: 12px;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  align-items: flex-start;
+.item{
+  border:1px solid #e7e8ee;
+  border-radius:12px;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:flex-start
 }
 
-.item strong {
-  font-size: 17px;
+.item strong{font-size:17px}
+
+.muted{
+  color:#777;
+  font-size:14px
 }
 
-.muted {
-  color: #777;
-  font-size: 14px;
+.badge{
+  display:inline-block;
+  background:#f0efff;
+  color:#6256d8;
+  padding:4px 8px;
+  border-radius:7px;
+  font-size:12px;
+  margin-top:6px
 }
 
-.badge {
-  display: inline-block;
-  background: #f0efff;
-  color: #6256d8;
-  padding: 4px 8px;
-  border-radius: 7px;
-  font-size: 12px;
-  margin-top: 6px;
+.flashcard{
+  max-width:600px;
+  margin:30px auto;
+  text-align:center
 }
 
-.flashcard {
-  max-width: 600px;
-  margin: 30px auto;
-  text-align: center;
+.flash-inner{
+  min-height:260px;
+  border:1px solid #e2e2eb;
+  border-radius:18px;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:30px
 }
 
-.flash-inner {
-  min-height: 260px;
-  border: 1px solid #e2e2eb;
-  border-radius: 18px;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  cursor: pointer;
+.flash-word{
+  font-size:40px;
+  font-weight:800
 }
 
-.flash-word {
-  font-size: 40px;
-  font-weight: 800;
+.flash-translation{
+  font-size:23px;
+  color:#7467f0;
+  margin-top:20px;
+  min-height:32px
 }
 
-.flash-translation {
-  font-size: 23px;
-  color: #7467f0;
-  margin-top: 20px;
-  min-height: 32px;
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  color:#777;
+  margin:18px
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  color: #777;
-  margin: 18px;
+.notice{
+  padding:12px 15px;
+  border-radius:10px;
+  background:#f7f6ff;
+  color:#5f55bb;
+  margin-top:12px
 }
 
-.notice {
-  padding: 12px 15px;
-  border-radius: 10px;
-  background: #f7f6ff;
-  color: #5f55bb;
-  margin-top: 12px;
+.correction{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:15px
 }
 
-.correction {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
+.text-box{
+  background:#fafafa;
+  border:1px solid #e5e5ec;
+  border-radius:10px;
+  padding:15px;
+  white-space:pre-wrap;
+  min-height:130px
 }
 
-.text-box {
-  background: #fafafa;
-  border: 1px solid #e5e5ec;
-  border-radius: 10px;
-  padding: 15px;
-  white-space: pre-wrap;
-  min-height: 130px;
+.empty{
+  text-align:center;
+  color:#999;
+  padding:30px
 }
 
-.empty {
-  text-align: center;
-  color: #999;
-  padding: 30px;
+/* Account */
+
+.account-panel{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:22px;
+  padding-top:16px;
+  border-top:1px solid #e7e8ee
 }
 
-/* ACCOUNT */
-
-.account-panel {
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 22px;
-  padding-top: 16px;
-  border-top: 1px solid #e7e8ee;
+.account-label{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.08em;
+  color:#999;
+  margin:0 10px 6px
 }
 
-.account-label {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  color: #999;
-  margin: 0 10px 6px;
+.account-email{
+  margin:0 10px 10px;
+  font-size:12px;
+  color:#666;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
 }
 
-.account-email {
-  margin: 0 10px 10px;
-  font-size: 12px;
-  color: #666;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.account-btn{
+  width:100%;
+  background:#f4f3fb;
+  color:#4d4a61;
+  padding:10px 12px;
+  border-radius:9px;
+  margin-top:6px;
+  text-align:left
 }
 
-.account-btn {
-  width: 100%;
-  background: #f4f3fb;
-  color: #4d4a61;
-  padding: 10px 12px;
-  border-radius: 9px;
-  margin-top: 6px;
-  text-align: left;
+.account-btn:hover{
+  background:#ebe9fa;
+  color:#6256d8
 }
 
-.account-btn:hover {
-  background: #ebe9fa;
-  color: #6256d8;
+.logout-btn{
+  background:#fff0f0;
+  color:#c64d4d
 }
 
-.logout-btn {
-  background: #fff0f0;
-  color: #c64d4d;
+/* Mobile menu */
+
+.mobile-menu{
+  display:none;
+  position:fixed;
+  z-index:1002;
+  top:14px;
+  left:14px;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background:#7467f0;
+  color:#fff;
+  font-size:22px;
+  box-shadow:0 5px 18px rgba(0,0,0,.12)
 }
 
-/* MOBILE MENU */
-
-.mobile-menu {
-  display: none;
-  position: fixed;
-  z-index: 1002;
-  top: 14px;
-  left: 14px;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #7467f0;
-  color: #fff;
-  font-size: 22px;
-  box-shadow: 0 5px 18px rgba(0,0,0,.12);
+.sidebar-overlay{
+  display:none
 }
 
-.sidebar-overlay {
-  display: none;
+/* Account modal */
+
+.modal-backdrop{
+  position:fixed;
+  z-index:2000;
+  inset:0;
+  background:rgba(20,20,30,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  backdrop-filter:blur(3px)
 }
 
-/* TABLETS */
+.account-modal{
+  width:100%;
+  max-width:520px;
+  max-height:90vh;
+  overflow:auto;
+  box-shadow:0 24px 70px rgba(0,0,0,.18)
+}
 
-@media (max-width: 900px) {
+.account-list{
+  display:grid;
+  gap:9px;
+  margin-top:20px
+}
 
-  .sidebar {
-    width: 220px;
+.saved-account{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  border:1px solid #e7e8ee;
+  border-radius:12px;
+  background:#fff
+}
+
+.saved-account.current{
+  border-color:#7467f0;
+  background:#f7f5ff
+}
+
+.saved-account-info{
+  min-width:0;
+  flex:1
+}
+
+.saved-account-email{
+  font-weight:700;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
+}
+
+.saved-account-status{
+  font-size:11px;
+  color:#777;
+  margin-top:3px
+}
+
+.account-remove{
+  padding:8px 10px;
+  border-radius:8px;
+  color:#b44;
+  background:#fff0f0
+}
+
+.account-divider{
+  height:1px;
+  background:#e7e8ee;
+  margin:18px 0
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:220px
   }
 
-  .main {
-    margin-left: 220px;
-    width: calc(100% - 220px);
-    padding: 30px 28px;
+  .main{
+    margin-left:220px;
+    width:calc(100% - 220px);
+    padding:30px 28px
   }
 
-  .form-grid {
-    grid-template-columns: 1fr;
+  .form-grid{
+    grid-template-columns:1fr
   }
 
-  .full {
-    grid-column: auto;
-  }
-}
-
-/* PHONES */
-
-@media (max-width: 700px) {
-
-  .mobile-menu {
-    display: block;
-  }
-
-  .sidebar {
-    width: 270px;
-    height: 100vh;
-    transform: translateX(-105%);
-    transition: transform .25s ease;
-    padding: 22px 18px;
-    border-right: 1px solid #e7e8ee;
-    border-bottom: 0;
-    box-shadow: 10px 0 30px rgba(0,0,0,.12);
-  }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-  .sidebar-overlay {
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    background: rgba(20,20,30,.35);
-    backdrop-filter: blur(2px);
-  }
-
-  .sidebar-overlay.show {
-    display: block;
-  }
-
-  .main {
-    margin: 0;
-    width: 100%;
-    padding: 76px 16px 25px;
-  }
-
-  .header {
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-size: 26px;
-  }
-
-  .card {
-    padding: 17px;
-    border-radius: 14px;
-  }
-
-  .item {
-    flex-direction: column;
-  }
-
-  .item > .actions {
-    width: 100%;
-  }
-
-  .item > .actions button {
-    flex: 1;
-  }
-
-  .flash-word {
-    font-size: 32px;
-  }
-
-  .flash-inner {
-    min-height: 220px;
-  }
-
-  .correction {
-    grid-template-columns: 1fr;
-  }
-
-  .nav {
-    display: block;
-  }
-
-  .nav button {
-    width: 100%;
-    text-align: left;
-    padding: 12px;
-    margin: 3px 0;
+  .full{
+    grid-column:auto
   }
 }
 
-/* SMALL PHONES */
+@media(max-width:700px){
 
-@media (max-width: 420px) {
-
-  .main {
-    padding-left: 11px;
-    padding-right: 11px;
+  .mobile-menu{
+    display:block
   }
 
-  .card {
-    padding: 14px;
+  .sidebar{
+    position:fixed;
+    z-index:1001;
+    left:0;
+    top:0;
+    bottom:0;
+    width:270px;
+    height:100vh;
+    transform:translateX(-105%);
+    transition:transform .25s ease;
+    box-shadow:10px 0 30px rgba(0,0,0,.12);
+    border-right:1px solid #e7e8ee;
+    border-bottom:0;
+    padding:22px 18px
   }
 
-  .actions {
-    flex-direction: column;
+  .sidebar.open{
+    transform:translateX(0)
   }
 
-  .actions button {
-    width: 100%;
+  .sidebar-overlay{
+    position:fixed;
+    z-index:1000;
+    inset:0;
+    background:rgba(20,20,30,.35);
+    backdrop-filter:blur(2px)
   }
 
-  .stats {
-    gap: 12px;
+  .sidebar-overlay.show{
+    display:block
+  }
+
+  .main{
+    margin:0;
+    width:100%;
+    padding:76px 16px 25px
+  }
+
+  .header{
+    margin-bottom:20px
+  }
+
+  h1{
+    font-size:26px
+  }
+
+  .card{
+    padding:17px;
+    border-radius:14px
+  }
+
+  .item{
+    flex-direction:column
+  }
+
+  .item>.actions{
+    width:100%
+  }
+
+  .item>.actions button{
+    flex:1
+  }
+
+  .flash-word{
+    font-size:32px
+  }
+
+  .flash-inner{
+    min-height:220px
+  }
+
+  .correction{
+    grid-template-columns:1fr
+  }
+
+  .nav{
+    display:block
+  }
+
+  .nav button{
+    width:100%;
+    text-align:left;
+    padding:12px;
+    margin:3px 0
+  }
+
+  .account-modal{
+    max-height:94vh
+  }
+
+  .modal-backdrop{
+    padding:10px
+  }
+}
+
+@media(max-width:420px){
+
+  .main{
+    padding-left:11px;
+    padding-right:11px
+  }
+
+  .card{
+    padding:14px
+  }
+
+  .actions{
+    flex-direction:column
+  }
+
+  .actions button{
+    width:100%
+  }
+
+  .flashcard .actions{
+    flex-direction:column
+  }
+
+  .stats{
+    gap:12px
   }
 
   input,
-  textarea {
-    font-size: 16px;
+  textarea{
+    font-size:16px
   }
 }
 </style>
@@ -505,56 +570,45 @@ label {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL =
-  "https://qaglzghxodtsmfwbofqu.supabase.co";
+const SUPABASE_URL = "https://qaglzghxodtsmfwbofqu.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_f7ae6u4JA3-x2lK3fajoIg_AxI4O2S_";
+"sb_publishable_f7ae6u4JA3-x2lK3fajoIg_AxI4O2S_";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 </script>
 </head>
 
 <body>
 
-<!-- AUTH SCREEN -->
+<!-- AUTH -->
 
-<div
-  id="authScreen"
-  style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f6f7fb;padding:20px"
->
+<div id="authScreen"
+style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f6f7fb;padding:20px">
 
-  <div
-    class="card"
-    style="width:100%;max-width:420px"
-  >
+  <div class="card" style="width:100%;max-width:420px">
 
     <h1 style="margin-bottom:8px">
       English<span style="color:#7467f0">Study</span>
     </h1>
 
-    <p
-      class="subtitle"
-      style="margin-bottom:22px"
-    >
+    <p class="subtitle" style="margin-bottom:22px">
       Sign in to sync your vocabulary, grammar and writing.
+      You can switch accounts anytime.
     </p>
 
     <label>Email</label>
-
     <input
       id="authEmail"
       type="email"
       placeholder="you@example.com"
     >
 
-    <label style="margin-top:14px">
-      Password
-    </label>
+    <label style="margin-top:14px">Password</label>
 
     <input
       id="authPassword"
@@ -587,11 +641,10 @@ const supabaseClient =
     ></div>
 
   </div>
-
 </div>
 
 
-<!-- APPLICATION -->
+<!-- APP -->
 
 <div
   id="appShell"
@@ -599,612 +652,642 @@ const supabaseClient =
   style="display:none"
 >
 
-  <button
-    id="mobileMenuBtn"
-    class="mobile-menu"
-    onclick="toggleSidebar()"
-    aria-label="Open menu"
-  >
-    ☰
-  </button>
+<button
+  id="mobileMenuBtn"
+  class="mobile-menu"
+  onclick="toggleSidebar()"
+  aria-label="Open menu"
+>
+  ☰
+</button>
 
-  <div
-    id="sidebarOverlay"
-    class="sidebar-overlay"
-    onclick="closeSidebar()"
-  ></div>
+<div
+  id="sidebarOverlay"
+  class="sidebar-overlay"
+  onclick="closeSidebar()"
+></div>
 
 
-  <aside
-    class="sidebar"
-    id="sidebar"
-  >
+<!-- SIDEBAR -->
 
-    <div class="logo">
-      English<span>Study</span>
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <div class="logo">
+    English<span>Study</span>
+  </div>
+
+  <nav class="nav">
+
+    <button
+      class="active"
+      data-page="vocabulary"
+    >
+      📚 Vocabulary
+    </button>
+
+    <button data-page="grammar">
+      📖 Grammar
+    </button>
+
+    <button data-page="writing">
+      ✍️ Writing
+    </button>
+
+  </nav>
+
+
+  <!-- ACCOUNT -->
+
+  <div class="account-panel">
+
+    <div class="account-label">
+      ACCOUNT
     </div>
 
-    <nav class="nav">
+    <div
+      id="accountEmail"
+      class="account-email"
+    >
+      Not signed in
+    </div>
+
+    <button
+      class="account-btn"
+      onclick="openAccountManager()"
+    >
+      ⇄ Switch account
+    </button>
+
+    <button
+      class="account-btn logout-btn"
+      onclick="signOut()"
+    >
+      ↪ Sign out
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- ACCOUNT MODAL -->
+
+<div
+  id="accountModal"
+  class="modal-backdrop"
+  style="display:none"
+>
+
+  <div class="account-modal card">
+
+    <div
+      style="display:flex;justify-content:space-between;align-items:center;gap:12px"
+    >
+
+      <div>
+
+        <h2 style="margin-bottom:4px">
+          Accounts
+        </h2>
+
+        <div class="muted">
+          Switch between saved accounts or add another one.
+        </div>
+
+      </div>
 
       <button
-        class="active"
-        data-page="vocabulary"
+        class="secondary"
+        onclick="closeAccountManager()"
+        aria-label="Close"
       >
-        📚 Vocabulary
+        ✕
       </button>
 
-      <button data-page="grammar">
-        📖 Grammar
-      </button>
-
-      <button data-page="writing">
-        ✍️ Writing
-      </button>
-
-    </nav>
+    </div>
 
 
-    <!-- ACCOUNT CONTROLS -->
+    <div
+      id="accountList"
+      class="account-list"
+    ></div>
 
-    <div class="account-panel">
 
-      <div class="account-label">
-        ACCOUNT
+    <div class="account-divider"></div>
+
+
+    <div
+      id="addAccountForm"
+      style="display:none"
+    >
+
+      <h3 style="margin-bottom:12px">
+        Add another account
+      </h3>
+
+      <label>Email</label>
+
+      <input
+        id="switchEmail"
+        type="email"
+        placeholder="you@example.com"
+      >
+
+      <label style="margin-top:12px">
+        Password
+      </label>
+
+      <input
+        id="switchPassword"
+        type="password"
+        placeholder="Password"
+      >
+
+      <div class="actions">
+
+        <button
+          class="primary"
+          onclick="addAccount()"
+        >
+          Sign in to account
+        </button>
+
+        <button
+          class="secondary"
+          onclick="hideAddAccountForm()"
+        >
+          Cancel
+        </button>
+
       </div>
 
       <div
-        id="accountEmail"
-        class="account-email"
-      >
-        Not signed in
+        id="switchMessage"
+        class="notice"
+        style="display:none"
+      ></div>
+
+    </div>
+
+
+    <button
+      id="showAddAccountBtn"
+      class="secondary"
+      style="width:100%"
+      onclick="showAddAccountForm()"
+    >
+      ＋ Add another account
+    </button>
+
+  </div>
+</div>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+<!-- VOCABULARY -->
+
+<section
+  id="vocabulary"
+  class="page active"
+>
+
+  <div class="header">
+
+    <div>
+
+      <h1>
+        Vocabulary
+      </h1>
+
+      <div class="subtitle">
+        Build your personal English dictionary.
       </div>
 
-      <button
-        class="account-btn"
-        onclick="switchAccount()"
-      >
-        ⇄ Switch account
-      </button>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div>
+
+        <label>
+          English word
+        </label>
+
+        <input
+          id="word"
+          placeholder="e.g. improve"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          Translation
+        </label>
+
+        <input
+          id="translation"
+          placeholder="e.g. покращувати"
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="actions">
 
       <button
-        class="account-btn logout-btn"
-        onclick="signOut()"
+        class="primary"
+        onclick="saveWord()"
       >
-        ↪ Sign out
+        Save word
       </button>
 
     </div>
 
-  </aside>
+  </div>
 
 
-  <main class="main">
+  <div class="card">
 
-
-    <!-- VOCABULARY -->
-
-    <section
-      id="vocabulary"
-      class="page active"
+    <input
+      class="search"
+      id="wordSearch"
+      oninput="renderWords()"
+      placeholder="🔍 Search word or translation..."
     >
 
-      <div class="header">
+    <div
+      id="wordList"
+      class="word-list"
+    ></div>
 
-        <div>
-
-          <h1>Vocabulary</h1>
-
-          <div class="subtitle">
-            Build your personal English dictionary.
-          </div>
-
-        </div>
-
-      </div>
+  </div>
 
 
-      <div class="card">
+  <!-- FLASHCARDS -->
 
-        <div class="form-grid">
+  <div class="card">
 
-          <div>
+    <h2>
+      Flashcards
+    </h2>
 
-            <label>English word</label>
+    <p class="muted">
+      Practice your saved vocabulary.
+    </p>
 
-            <input
-              id="word"
-              placeholder="e.g. improve"
-            >
+    <div class="flashcard">
 
-          </div>
-
-          <div>
-
-            <label>Translation</label>
-
-            <input
-              id="translation"
-              placeholder="e.g. покращувати"
-            >
-
-          </div>
-
-        </div>
-
-
-        <div class="actions">
-
-          <button
-            class="primary"
-            onclick="saveWord()"
-          >
-            Save word
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <input
-          class="search"
-          id="wordSearch"
-          oninput="renderWords()"
-          placeholder="🔍 Search word or translation..."
-        >
+      <div
+        class="flash-inner"
+        onclick="showTranslation()"
+      >
 
         <div
-          id="wordList"
-          class="word-list"
+          id="flashWord"
+          class="flash-word"
+        >
+          No words yet
+        </div>
+
+        <div
+          id="flashTranslation"
+          class="flash-translation"
         ></div>
 
       </div>
 
 
-      <div class="card">
+      <div class="stats">
 
-        <h2>Flashcards</h2>
+        Card
 
-        <p class="muted">
-          Practice your saved vocabulary.
-        </p>
-
-        <div class="flashcard">
-
-          <div
-            class="flash-inner"
-            onclick="showTranslation()"
-          >
-
-            <div
-              id="flashWord"
-              class="flash-word"
-            >
-              No words yet
-            </div>
-
-            <div
-              id="flashTranslation"
-              class="flash-translation"
-            ></div>
-
-          </div>
-
-          <div class="stats">
-
-            Card
-
-            <span id="cardNumber">
-              0 / 0
-            </span>
-
-          </div>
-
-          <div
-            class="actions"
-            style="justify-content:center"
-          >
-
-            <button
-              class="secondary"
-              onclick="showTranslation()"
-            >
-              Show translation
-            </button>
-
-            <button
-              class="primary"
-              onclick="nextCard()"
-            >
-              Next →
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- GRAMMAR -->
-
-    <section
-      id="grammar"
-      class="page"
-    >
-
-      <div class="header">
-
-        <div>
-
-          <h1>Grammar</h1>
-
-          <div class="subtitle">
-            Keep all your grammar rules in one place.
-          </div>
-
-        </div>
+        <span id="cardNumber">
+          0 / 0
+        </span>
 
       </div>
 
 
-      <div class="card">
+      <div
+        class="actions"
+        style="justify-content:center"
+      >
 
-        <div class="form-grid">
+        <button
+          class="secondary"
+          onclick="showTranslation()"
+        >
+          Show translation
+        </button>
 
-          <div class="full">
-
-            <label>Rule title</label>
-
-            <input
-              id="ruleTitle"
-              placeholder="e.g. Present Perfect"
-            >
-
-          </div>
-
-          <div class="full">
-
-            <label>Rule</label>
-
-            <textarea
-              id="ruleText"
-              placeholder="Write your grammar rule..."
-            ></textarea>
-
-          </div>
-
-          <div class="full">
-
-            <label>Examples</label>
-
-            <textarea
-              id="ruleExamples"
-              placeholder="I have finished my homework.
-She has already left."
-            ></textarea>
-
-          </div>
-
-        </div>
-
-
-        <div class="actions">
-
-          <button
-            class="primary"
-            onclick="saveRule()"
-          >
-            Save rule
-          </button>
-
-        </div>
+        <button
+          class="primary"
+          onclick="nextCard()"
+        >
+          Next →
+        </button>
 
       </div>
 
+    </div>
 
-      <div class="card">
+  </div>
+
+</section>
+
+
+<!-- GRAMMAR -->
+
+<section
+  id="grammar"
+  class="page"
+>
+
+  <div class="header">
+
+    <div>
+
+      <h1>
+        Grammar
+      </h1>
+
+      <div class="subtitle">
+        Keep all your grammar rules in one place.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="form-grid">
+
+      <div class="full">
+
+        <label>
+          Rule title
+        </label>
 
         <input
-          class="search"
-          id="ruleSearch"
-          oninput="renderRules()"
-          placeholder="🔍 Search grammar rules..."
+          id="ruleTitle"
+          placeholder="e.g. Present Perfect"
         >
-
-        <div
-          id="ruleList"
-          class="rule-list"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- WRITING -->
-
-    <section
-      id="writing"
-      class="page"
-    >
-
-      <div class="header">
-
-        <div>
-
-          <h1>Writing</h1>
-
-          <div class="subtitle">
-            Write, save and review your English texts.
-          </div>
-
-        </div>
 
       </div>
 
 
-      <div class="card">
+      <div class="full">
 
-        <label>Text title</label>
-
-        <input
-          id="writingTitle"
-          placeholder="e.g. My summer"
-        >
-
-        <label style="margin-top:15px">
-          Your text
+        <label>
+          Rule
         </label>
 
         <textarea
-          id="writingText"
-          style="min-height:230px"
-          placeholder="Write your English text here..."
+          id="ruleText"
+          placeholder="Write your grammar rule..."
         ></textarea>
 
-
-        <div class="actions">
-
-          <button
-            class="primary"
-            onclick="checkWriting()"
-          >
-            Check writing
-          </button>
-
-          <button
-            class="secondary"
-            onclick="saveWriting()"
-          >
-            Save text
-          </button>
-
-        </div>
-
-
-        <div id="checkResult"></div>
-
       </div>
 
 
-      <div class="card">
+      <div class="full">
 
-        <h2>Saved texts</h2>
+        <label>
+          Examples
+        </label>
 
-        <input
-          class="search"
-          id="writingSearch"
-          oninput="renderWritings()"
-          placeholder="🔍 Search saved texts..."
-        >
-
-        <div
-          id="writingList"
-          class="writing-list"
-        ></div>
+        <textarea
+          id="ruleExamples"
+          placeholder="I have finished my homework.
+She has already left."
+        ></textarea>
 
       </div>
 
-    </section>
+    </div>
 
-  </main>
+
+    <div class="actions">
+
+      <button
+        class="primary"
+        onclick="saveRule()"
+      >
+        Save rule
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <input
+      class="search"
+      id="ruleSearch"
+      oninput="renderRules()"
+      placeholder="🔍 Search grammar rules..."
+    >
+
+    <div
+      id="ruleList"
+      class="rule-list"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- WRITING -->
+
+<section
+  id="writing"
+  class="page"
+>
+
+  <div class="header">
+
+    <div>
+
+      <h1>
+        Writing
+      </h1>
+
+      <div class="subtitle">
+        Write, save and review your English texts.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <label>
+      Text title
+    </label>
+
+    <input
+      id="writingTitle"
+      placeholder="e.g. My summer"
+    >
+
+    <label style="margin-top:15px">
+      Your text
+    </label>
+
+    <textarea
+      id="writingText"
+      style="min-height:230px"
+      placeholder="Write your English text here..."
+    ></textarea>
+
+
+    <div class="actions">
+
+      <button
+        class="primary"
+        onclick="checkWriting()"
+      >
+        Check writing
+      </button>
+
+      <button
+        class="secondary"
+        onclick="saveWriting()"
+      >
+        Save text
+      </button>
+
+    </div>
+
+
+    <div id="checkResult"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      Saved texts
+    </h2>
+
+    <input
+      class="search"
+      id="writingSearch"
+      oninput="renderWritings()"
+      placeholder="🔍 Search saved texts..."
+    >
+
+    <div
+      id="writingList"
+      class="writing-list"
+    ></div>
+
+  </div>
+
+</section>
+
+</main>
 
 </div>
 
 
 <script>
 
-/* STATE */
+let words=[];
+let rules=[];
+let writings=[];
 
-let words = [];
-let rules = [];
-let writings = [];
+let currentUser=null;
 
-let currentUser = null;
+let editingWordId=null;
+let editingRuleId=null;
+let editingWritingId=null;
 
-let editingWordId = null;
-let editingRuleId = null;
-let editingWritingId = null;
-
-let flashIndex = 0;
-let flashShown = false;
+let flashIndex=0;
+let flashShown=false;
 
 
 /* NAVIGATION */
 
-document
-  .querySelectorAll('.nav button')
-  .forEach(btn => {
+document.querySelectorAll('.nav button').forEach(btn=>{
 
-    btn.onclick = () => {
+  btn.onclick=()=>{
 
-      document
-        .querySelectorAll('.nav button')
-        .forEach(b =>
-          b.classList.remove('active')
-        );
+    document
+      .querySelectorAll('.nav button')
+      .forEach(b=>b.classList.remove('active'));
 
-      btn.classList.add('active');
+    btn.classList.add('active');
 
+    document
+      .querySelectorAll('.page')
+      .forEach(p=>p.classList.remove('active'));
 
-      document
-        .querySelectorAll('.page')
-        .forEach(p =>
-          p.classList.remove('active')
-        );
+    document
+      .getElementById(btn.dataset.page)
+      .classList.add('active');
 
+    if(btn.dataset.page==='vocabulary'){
+      updateFlashcard();
+    }
 
-      document
-        .getElementById(btn.dataset.page)
-        .classList.add('active');
+    closeSidebar();
 
+  };
 
-      if (btn.dataset.page === 'vocabulary') {
-        updateFlashcard();
-      }
-
-      closeSidebar();
-
-    };
-
-  });
+});
 
 
-/* =========================
-   ACCOUNT MANAGEMENT
-========================= */
+/* VOCABULARY */
 
-function updateAccountUI() {
-
-  const el =
-    document.getElementById('accountEmail');
-
-  if (!el) return;
-
-  el.textContent =
-    currentUser?.email || 'Not signed in';
-
-}
-
-
-async function signOut() {
-
-  const { error } =
-    await supabaseClient.auth.signOut();
-
-  if (error) {
-
-    alert(
-      'Помилка виходу: ' +
-      error.message
-    );
-
-    return;
-  }
-
-  currentUser = null;
-
-  words = [];
-  rules = [];
-  writings = [];
-
-  editingWordId = null;
-  editingRuleId = null;
-  editingWritingId = null;
-
-  document.getElementById('authEmail').value = '';
-  document.getElementById('authPassword').value = '';
-
-  document.getElementById('authMessage').style.display = 'none';
-
-  closeSidebar();
-
-}
-
-
-async function switchAccount() {
-
-  await signOut();
-
-  document
-    .getElementById('authEmail')
-    .focus();
-
-}
-
-
-function toggleSidebar() {
-
-  document
-    .getElementById('sidebar')
-    .classList.toggle('open');
-
-  document
-    .getElementById('sidebarOverlay')
-    .classList.toggle('show');
-
-}
-
-
-function closeSidebar() {
-
-  document
-    .getElementById('sidebar')
-    ?.classList.remove('open');
-
-  document
-    .getElementById('sidebarOverlay')
-    ?.classList.remove('show');
-
-}
-
-
-/* =========================
-   VOCABULARY
-========================= */
-
-async function saveWord() {
+async function saveWord(){
 
   const word =
-    document
-      .getElementById('word')
-      .value
-      .trim();
+    document.getElementById('word')
+    .value.trim();
 
   const translation =
-    document
-      .getElementById('translation')
-      .value
-      .trim();
+    document.getElementById('translation')
+    .value.trim();
 
-
-  if (!currentUser) {
-
+  if(!currentUser){
     alert('You are not signed in.');
-
     return;
   }
 
-
-  if (!word || !translation) {
-
-    alert(
-      'Please enter both the word and translation.'
-    );
-
+  if(!word || !translation){
+    alert('Please enter both the word and translation.');
     return;
   }
-
 
   let result;
 
-
-  if (editingWordId) {
+  if(editingWordId){
 
     result =
       await supabaseClient
@@ -1213,24 +1296,23 @@ async function saveWord() {
           word,
           translation
         })
-        .eq('id', editingWordId)
-        .eq('user_id', currentUser.id);
+        .eq('id',editingWordId)
+        .eq('user_id',currentUser.id);
 
-  } else {
+  }else{
 
     result =
       await supabaseClient
         .from('vocabulary')
         .insert({
-          user_id: currentUser.id,
+          user_id:currentUser.id,
           word,
           translation
         });
 
   }
 
-
-  if (result.error) {
+  if(result.error){
 
     console.error(
       'Supabase vocabulary error:',
@@ -1245,49 +1327,41 @@ async function saveWord() {
     return;
   }
 
+  editingWordId=null;
 
-  editingWordId = null;
+  document.getElementById('word').value='';
+  document.getElementById('translation').value='';
 
-  document.getElementById('word').value = '';
-  document.getElementById('translation').value = '';
-
-  document
-    .querySelector('[onclick="saveWord()"]')
-    .textContent = 'Save word';
-
+  document.querySelector(
+    '[onclick="saveWord()"]'
+  ).textContent='Зберегти слово';
 
   await loadData();
 
 }
 
 
-async function deleteWord(id) {
+async function deleteWord(id){
 
-  if (!currentUser) return;
+  if(!currentUser)return;
 
-
-  const { error } =
+  const {error} =
     await supabaseClient
       .from('vocabulary')
       .delete()
-      .eq('id', id)
-      .eq('user_id', currentUser.id);
+      .eq('id',id)
+      .eq('user_id',currentUser.id);
 
-
-  if (error) {
-
+  if(error){
     alert(error.message);
-
-  } else {
-
+  }else{
     await loadData();
-
   }
 
 }
 
 
-function renderWords() {
+function renderWords(){
 
   const q =
     document
@@ -1295,205 +1369,173 @@ function renderWords() {
       .value
       .toLowerCase();
 
-
   const list =
     document.getElementById('wordList');
 
-
   const filtered =
-    words.filter(x =>
-      (x.word + ' ' + x.translation)
+    words.filter(
+      x =>
+        (x.word+' '+x.translation)
         .toLowerCase()
         .includes(q)
     );
 
-
   list.innerHTML =
     filtered.length
 
-      ? filtered.map(x => `
+    ? filtered.map(x => `
 
-        <div class="item">
+      <div class="item">
 
-          <div>
+        <div>
 
-            <strong>
-              ${esc(x.word)}
-            </strong>
+          <strong>
+            ${esc(x.word)}
+          </strong>
 
-            <div class="muted">
-              ${esc(x.translation)}
-            </div>
-
-          </div>
-
-          <div
-            class="actions"
-            style="margin:0"
-          >
-
-            <button
-              class="secondary"
-              onclick="editWord(${x.id})"
-            >
-              Edit
-            </button>
-
-            <button
-              class="danger"
-              onclick="deleteWord(${x.id})"
-            >
-              Delete
-            </button>
-
+          <div class="muted">
+            ${esc(x.translation)}
           </div>
 
         </div>
 
-      `).join('')
+        <div
+          class="actions"
+          style="margin:0"
+        >
 
-      : '<div class="empty">No words found.</div>';
+          <button
+            class="secondary"
+            onclick="editWord(${x.id})"
+          >
+            Edit
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteWord(${x.id})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join('')
+
+    : '<div class="empty">No words found.</div>';
 
 }
 
 
-function updateFlashcard() {
+function updateFlashcard(){
 
-  if (flashIndex >= words.length) {
-    flashIndex = 0;
+  if(flashIndex>=words.length){
+    flashIndex=0;
   }
 
+  const w=words[flashIndex];
 
-  const w = words[flashIndex];
+  document.getElementById('flashWord').textContent =
+    w ? w.word : 'No words yet';
 
+  document.getElementById('flashTranslation').textContent='';
 
-  document
-    .getElementById('flashWord')
-    .textContent =
-      w ? w.word : 'No words yet';
+  document.getElementById('cardNumber').textContent =
+    words.length
+      ? `${flashIndex+1} / ${words.length}`
+      : '0 / 0';
 
-
-  document
-    .getElementById('flashTranslation')
-    .textContent = '';
-
-
-  document
-    .getElementById('cardNumber')
-    .textContent =
-      words.length
-        ? `${flashIndex + 1} / ${words.length}`
-        : '0 / 0';
-
-
-  flashShown = false;
+  flashShown=false;
 
 }
 
 
-function showTranslation() {
+function showTranslation(){
 
-  if (!words.length) return;
+  if(!words.length)return;
 
-  flashShown = !flashShown;
+  flashShown=!flashShown;
 
-  document
-    .getElementById('flashTranslation')
-    .textContent =
-      flashShown
-        ? words[flashIndex].translation
-        : '';
+  document.getElementById(
+    'flashTranslation'
+  ).textContent =
+    flashShown
+      ? words[flashIndex].translation
+      : '';
 
 }
 
 
-function nextCard() {
+function nextCard(){
 
-  if (!words.length) return;
+  if(!words.length)return;
 
   flashIndex =
-    (flashIndex + 1) % words.length;
+    (flashIndex+1)%words.length;
 
   updateFlashcard();
 
 }
 
 
-/* =========================
-   GRAMMAR
-========================= */
+/* GRAMMAR */
 
-async function saveRule() {
+async function saveRule(){
 
   const title =
-    document
-      .getElementById('ruleTitle')
-      .value
-      .trim();
+    document.getElementById('ruleTitle')
+    .value.trim();
 
   const text =
-    document
-      .getElementById('ruleText')
-      .value
-      .trim();
+    document.getElementById('ruleText')
+    .value.trim();
 
   const examples =
-    document
-      .getElementById('ruleExamples')
-      .value
-      .trim();
+    document.getElementById('ruleExamples')
+    .value.trim();
 
-
-  if (!currentUser) {
-
+  if(!currentUser){
     alert('You are not signed in.');
-
     return;
   }
 
-
-  if (!title || !text) {
-
-    alert(
-      'Please enter a title and rule.'
-    );
-
+  if(!title || !text){
+    alert('Please enter a title and rule.');
     return;
   }
-
 
   let result;
 
-
-  if (editingRuleId) {
+  if(editingRuleId){
 
     result =
       await supabaseClient
         .from('grammar')
         .update({
           title,
-          rule: text,
+          rule:text,
           examples
         })
-        .eq('id', editingRuleId)
-        .eq('user_id', currentUser.id);
+        .eq('id',editingRuleId)
+        .eq('user_id',currentUser.id);
 
-  } else {
+  }else{
 
     result =
       await supabaseClient
         .from('grammar')
         .insert({
-          user_id: currentUser.id,
+          user_id:currentUser.id,
           title,
-          rule: text,
+          rule:text,
           examples
         });
 
   }
 
-
-  if (result.error) {
+  if(result.error){
 
     console.error(
       'Supabase grammar error:',
@@ -1508,50 +1550,42 @@ async function saveRule() {
     return;
   }
 
+  editingRuleId=null;
 
-  editingRuleId = null;
+  document.getElementById('ruleTitle').value='';
+  document.getElementById('ruleText').value='';
+  document.getElementById('ruleExamples').value='';
 
-  document.getElementById('ruleTitle').value = '';
-  document.getElementById('ruleText').value = '';
-  document.getElementById('ruleExamples').value = '';
-
-  document
-    .querySelector('[onclick="saveRule()"]')
-    .textContent = 'Save rule';
-
+  document.querySelector(
+    '[onclick="saveRule()"]'
+  ).textContent='Зберегти правило';
 
   await loadData();
 
 }
 
 
-async function deleteRule(id) {
+async function deleteRule(id){
 
-  if (!currentUser) return;
+  if(!currentUser)return;
 
-
-  const { error } =
+  const {error} =
     await supabaseClient
       .from('grammar')
       .delete()
-      .eq('id', id)
-      .eq('user_id', currentUser.id);
+      .eq('id',id)
+      .eq('user_id',currentUser.id);
 
-
-  if (error) {
-
+  if(error){
     alert(error.message);
-
-  } else {
-
+  }else{
     await loadData();
-
   }
 
 }
 
 
-function renderRules() {
+function renderRules(){
 
   const q =
     document
@@ -1559,163 +1593,145 @@ function renderRules() {
       .value
       .toLowerCase();
 
-
   const list =
     document.getElementById('ruleList');
 
-
   const filtered =
-    rules.filter(x =>
-      (
-        x.title +
-        ' ' +
-        (x.rule || x.text || '') +
-        ' ' +
-        (x.examples || '')
-      )
+    rules.filter(
+      x =>
+        (
+          x.title +
+          ' ' +
+          (x.rule || x.text || '') +
+          ' ' +
+          (x.examples || '')
+        )
         .toLowerCase()
         .includes(q)
     );
 
-
   list.innerHTML =
     filtered.length
 
-      ? filtered.map(x => `
+    ? filtered.map(x => `
 
-        <div class="item">
+      <div class="item">
 
-          <div>
+        <div>
 
-            <strong>
-              ${esc(x.title)}
-            </strong>
-
-            <div
-              class="muted"
-              style="white-space:pre-wrap;margin-top:8px"
-            >
-              ${esc(x.rule || x.text || '')}
-            </div>
-
-            ${
-              x.examples
-                ? `
-                  <div class="badge">
-                    Examples
-                  </div>
-
-                  <div
-                    class="muted"
-                    style="white-space:pre-wrap;margin-top:5px"
-                  >
-                    ${esc(x.examples)}
-                  </div>
-                `
-                : ''
-            }
-
-          </div>
-
+          <strong>
+            ${esc(x.title)}
+          </strong>
 
           <div
-            class="actions"
-            style="margin:0"
+            class="muted"
+            style="white-space:pre-wrap;margin-top:8px"
           >
-
-            <button
-              class="secondary"
-              onclick="editRule(${x.id})"
-            >
-              Edit
-            </button>
-
-            <button
-              class="danger"
-              onclick="deleteRule(${x.id})"
-            >
-              Delete
-            </button>
-
+            ${esc(x.rule || x.text || '')}
           </div>
+
+          ${
+            x.examples
+            ? `
+              <div class="badge">
+                Examples
+              </div>
+
+              <div
+                class="muted"
+                style="white-space:pre-wrap;margin-top:5px"
+              >
+                ${esc(x.examples)}
+              </div>
+            `
+            : ''
+          }
 
         </div>
 
-      `).join('')
+        <div
+          class="actions"
+          style="margin:0"
+        >
 
-      : '<div class="empty">No grammar rules found.</div>';
+          <button
+            class="secondary"
+            onclick="editRule(${x.id})"
+          >
+            Edit
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteRule(${x.id})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join('')
+
+    : '<div class="empty">No grammar rules found.</div>';
 
 }
 
 
-/* =========================
-   WRITING
-========================= */
+/* WRITING */
 
-async function saveWriting() {
+async function saveWriting(){
 
   const title =
     document
       .getElementById('writingTitle')
-      .value
-      .trim();
+      .value.trim();
 
   const text =
     document
       .getElementById('writingText')
-      .value
-      .trim();
+      .value.trim();
 
-
-  if (!currentUser) {
-
+  if(!currentUser){
     alert('You are not signed in.');
-
     return;
   }
 
-
-  if (!title || !text) {
-
-    alert(
-      'Please enter a title and text.'
-    );
-
+  if(!title || !text){
+    alert('Please enter a title and text.');
     return;
   }
-
 
   let result;
 
-
-  if (editingWritingId) {
+  if(editingWritingId){
 
     result =
       await supabaseClient
         .from('writings')
         .update({
           title,
-          original_text: text
+          original_text:text
         })
-        .eq('id', editingWritingId)
-        .eq('user_id', currentUser.id);
+        .eq('id',editingWritingId)
+        .eq('user_id',currentUser.id);
 
-  } else {
+  }else{
 
     result =
       await supabaseClient
         .from('writings')
         .insert({
-          user_id: currentUser.id,
+          user_id:currentUser.id,
           title,
-          original_text: text,
-          corrected_text: ''
+          original_text:text,
+          corrected_text:''
         });
 
   }
 
-
-  if (result.error) {
+  if(result.error){
 
     console.error(
       'Supabase writing error:',
@@ -1730,192 +1746,178 @@ async function saveWriting() {
     return;
   }
 
+  editingWritingId=null;
 
-  editingWritingId = null;
+  document.getElementById('writingTitle').value='';
+  document.getElementById('writingText').value='';
 
-  document.getElementById('writingTitle').value = '';
-  document.getElementById('writingText').value = '';
+  document.getElementById(
+    'checkResult'
+  ).innerHTML =
+    '<div class="notice">Текст збережено.</div>';
 
-  document
-    .getElementById('checkResult')
-    .innerHTML =
-      '<div class="notice">Text saved.</div>';
-
-
-  document
-    .querySelector('[onclick="saveWriting()"]')
-    .textContent = 'Save text';
-
+  document.querySelector(
+    '[onclick="saveWriting()"]'
+  ).textContent='Зберегти текст';
 
   await loadData();
 
 }
 
 
-async function deleteWriting(id) {
+async function deleteWriting(id){
 
-  if (!currentUser) return;
+  if(!currentUser)return;
 
-
-  const { error } =
+  const {error} =
     await supabaseClient
       .from('writings')
       .delete()
-      .eq('id', id)
-      .eq('user_id', currentUser.id);
+      .eq('id',id)
+      .eq('user_id',currentUser.id);
 
-
-  if (error) {
-
+  if(error){
     alert(error.message);
-
-  } else {
-
+  }else{
     await loadData();
-
   }
 
 }
 
 
-function renderWritings() {
+function renderWritings(){
 
   const list =
     document.getElementById('writingList');
 
-
   const q =
     (
-      document
-        .getElementById('writingSearch')
-        ?.value || ''
+      document.getElementById('writingSearch')?.value ||
+      ''
     )
-      .toLowerCase()
-      .trim();
-
+    .toLowerCase()
+    .trim();
 
   const filtered =
-    writings.filter(x =>
-      (
-        x.title +
-        ' ' +
-        (x.original_text || '') +
-        ' ' +
-        (x.corrected_text || '')
-      )
+    writings.filter(
+      x =>
+        (
+          x.title +
+          ' ' +
+          (x.original_text || '') +
+          ' ' +
+          (x.corrected_text || '')
+        )
         .toLowerCase()
         .includes(q)
     );
 
-
   list.innerHTML =
     filtered.length
 
-      ? filtered
-          .slice()
-          .reverse()
-          .map(x => `
+    ? filtered
+      .slice()
+      .reverse()
+      .map(x => `
 
-            <div class="item">
+      <div class="item">
 
-              <div style="flex:1">
+        <div style="flex:1">
 
-                <strong>
-                  ${esc(x.title)}
-                </strong>
+          <strong>
+            ${esc(x.title)}
+          </strong>
 
-                <div
-                  class="muted"
-                  style="white-space:pre-wrap;margin-top:8px"
-                >
-                  ${esc(x.original_text || '')}
-                </div>
+          <div
+            class="muted"
+            style="white-space:pre-wrap;margin-top:8px"
+          >
+            ${esc(x.original_text || '')}
+          </div>
 
-                ${
-                  x.corrected_text
-                    ? `
-                      <div class="badge">
-                        Corrected version
-                      </div>
-
-                      <div
-                        class="muted"
-                        style="white-space:pre-wrap;margin-top:6px"
-                      >
-                        ${esc(x.corrected_text)}
-                      </div>
-                    `
-                    : ''
-                }
-
+          ${
+            x.corrected_text
+            ? `
+              <div class="badge">
+                Corrected version
               </div>
-
 
               <div
-                class="actions"
-                style="margin:0"
+                class="muted"
+                style="white-space:pre-wrap;margin-top:6px"
               >
-
-                <button
-                  class="secondary"
-                  onclick="editWriting(${x.id})"
-                >
-                  Edit
-                </button>
-
-                <button
-                  class="danger"
-                  onclick="deleteWriting(${x.id})"
-                >
-                  Delete
-                </button>
-
+                ${esc(x.corrected_text)}
               </div>
+            `
+            : ''
+          }
 
-            </div>
+        </div>
 
-          `).join('')
+        <div
+          class="actions"
+          style="margin:0"
+        >
 
-      : '<div class="empty">No saved texts found.</div>';
+          <button
+            class="secondary"
+            onclick="editWriting(${x.id})"
+          >
+            Edit
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteWriting(${x.id})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join('')
+
+    : '<div class="empty">No saved texts found.</div>';
 
 }
 
 
-/* =========================
-   EDIT
-========================= */
+/* EDIT */
 
-function editWord(id) {
+function editWord(id){
 
   const x =
-    words.find(w => w.id === id);
+    words.find(w=>w.id===id);
 
-  if (!x) return;
+  if(!x)return;
 
-  editingWordId = id;
+  editingWordId=id;
 
-  document.getElementById('word').value = x.word;
+  document.getElementById('word').value =
+    x.word;
 
   document.getElementById('translation').value =
     x.translation;
 
-  document
-    .querySelector('[onclick="saveWord()"]')
-    .textContent = 'Update word';
+  document.querySelector(
+    '[onclick="saveWord()"]'
+  ).textContent='Оновити слово';
 
   document.getElementById('word').focus();
 
 }
 
 
-function editRule(id) {
+function editRule(id){
 
   const x =
-    rules.find(r => r.id === id);
+    rules.find(r=>r.id===id);
 
-  if (!x) return;
+  if(!x)return;
 
-  editingRuleId = id;
+  editingRuleId=id;
 
   document.getElementById('ruleTitle').value =
     x.title;
@@ -1926,23 +1928,23 @@ function editRule(id) {
   document.getElementById('ruleExamples').value =
     x.examples || '';
 
-  document
-    .querySelector('[onclick="saveRule()"]')
-    .textContent = 'Update rule';
+  document.querySelector(
+    '[onclick="saveRule()"]'
+  ).textContent='Оновити правило';
 
   document.getElementById('ruleTitle').focus();
 
 }
 
 
-function editWriting(id) {
+function editWriting(id){
 
   const x =
-    writings.find(w => w.id === id);
+    writings.find(w=>w.id===id);
 
-  if (!x) return;
+  if(!x)return;
 
-  editingWritingId = id;
+  editingWritingId=id;
 
   document.getElementById('writingTitle').value =
     x.title;
@@ -1950,50 +1952,39 @@ function editWriting(id) {
   document.getElementById('writingText').value =
     x.original_text;
 
-  document
-    .querySelector('[onclick="saveWriting()"]')
-    .textContent = 'Update text';
+  document.querySelector(
+    '[onclick="saveWriting()"]'
+  ).textContent='Оновити текст';
 
   document.getElementById('writingTitle').focus();
 
 }
 
 
-/* =========================
-   WRITING CHECK
-========================= */
+/* WRITING CHECK */
 
-async function checkWriting() {
+async function checkWriting(){
 
-  if (!currentUser) {
-
+  if(!currentUser){
     alert('You are not signed in.');
-
     return;
   }
-
 
   const text =
     document
       .getElementById('writingText')
-      .value
-      .trim();
+      .value.trim();
 
-
-  if (!text) {
-
+  if(!text){
     alert('Write a text first.');
-
     return;
   }
 
-
   let corrected =
     text
-      .replace(/\bi am\b/g, 'I am')
-      .replace(/\bi\b/g, 'I')
-      .replace(/\s{2,}/g, ' ');
-
+      .replace(/\bi am\b/g,'I am')
+      .replace(/\bi\b/g,'I')
+      .replace(/\s{2,}/g,' ');
 
   corrected =
     corrected
@@ -2001,86 +1992,84 @@ async function checkWriting() {
       .map(
         s =>
           s
-            ? s.charAt(0).toUpperCase() + s.slice(1)
+            ? s.charAt(0).toUpperCase()+s.slice(1)
             : s
       )
       .join(' ');
 
+  document.getElementById(
+    'checkResult'
+  ).innerHTML = `
 
-  document
-    .getElementById('checkResult')
-    .innerHTML = `
+    <div class="correction">
 
-      <div class="correction">
+      <div>
 
-        <div>
+        <label>
+          Original
+        </label>
 
-          <label>Original</label>
-
-          <div class="text-box">
-            ${esc(text)}
-          </div>
-
-        </div>
-
-        <div>
-
-          <label>Corrected</label>
-
-          <div class="text-box">
-            ${esc(corrected)}
-          </div>
-
+        <div class="text-box">
+          ${esc(text)}
         </div>
 
       </div>
 
-      <div class="notice">
-        This is a basic check, not a full grammar checker.
+      <div>
+
+        <label>
+          Corrected
+        </label>
+
+        <div class="text-box">
+          ${esc(corrected)}
+        </div>
+
       </div>
 
-    `;
+    </div>
 
+    <div class="notice">
+      This is a basic check, not a full grammar checker.
+    </div>
+
+  `;
 
   const title =
     document
       .getElementById('writingTitle')
-      .value
-      .trim() || 'Untitled';
-
+      .value.trim() || 'Untitled';
 
   let result;
 
-
-  if (editingWritingId) {
+  if(editingWritingId){
 
     result =
       await supabaseClient
         .from('writings')
         .update({
           title,
-          original_text: text,
-          corrected_text: corrected
+          original_text:text,
+          corrected_text:corrected
         })
-        .eq('id', editingWritingId)
-        .eq('user_id', currentUser.id);
+        .eq('id',editingWritingId)
+        .eq('user_id',currentUser.id);
 
-  } else {
+  }else{
 
     result =
       await supabaseClient
         .from('writings')
         .insert({
-          user_id: currentUser.id,
+          user_id:currentUser.id,
           title,
-          original_text: text,
-          corrected_text: corrected
+          original_text:text,
+          corrected_text:corrected
         });
 
   }
 
-
-  if (result.error) {
+  if(result.error){
 
     console.error(
       'Supabase writing check error:',
@@ -2092,7 +2081,7 @@ async function checkWriting() {
       result.error.message
     );
 
-  } else {
+  }else{
 
     await loadData();
 
@@ -2101,55 +2090,41 @@ async function checkWriting() {
 }
 
 
-/* =========================
-   LOAD DATA
-========================= */
+/* LOAD DATA */
 
-async function loadData() {
+async function loadData(){
 
-  if (!currentUser) return;
+  if(!currentUser)return;
 
-
-  const [w, r, t] =
+  const [w,r,t] =
     await Promise.all([
 
       supabaseClient
         .from('vocabulary')
         .select('*')
-        .eq('user_id', currentUser.id)
-        .order(
-          'created_at',
-          { ascending: true }
-        ),
+        .eq('user_id',currentUser.id)
+        .order('created_at',{ascending:true}),
 
       supabaseClient
         .from('grammar')
         .select('*')
-        .eq('user_id', currentUser.id)
-        .order(
-          'created_at',
-          { ascending: true }
-        ),
+        .eq('user_id',currentUser.id)
+        .order('created_at',{ascending:true}),
 
       supabaseClient
         .from('writings')
         .select('*')
-        .eq('user_id', currentUser.id)
-        .order(
-          'created_at',
-          { ascending: true }
-        )
+        .eq('user_id',currentUser.id)
+        .order('created_at',{ascending:true})
 
     ]);
-
 
   const err =
     w.error ||
     r.error ||
     t.error;
 
-
-  if (err) {
+  if(err){
 
     console.error(
       'Supabase load error:',
@@ -2164,11 +2139,9 @@ async function loadData() {
     return;
   }
 
-
-  words = w.data || [];
-  rules = r.data || [];
-  writings = t.data || [];
-
+  words=w.data || [];
+  rules=r.data || [];
+  writings=t.data || [];
 
   renderWords();
   renderRules();
@@ -2178,30 +2151,29 @@ async function loadData() {
 }
 
 
-/* =========================
-   AUTH
-========================= */
+/* AUTH */
 
-async function signIn() {
+async function signIn(){
 
   const email =
     document
       .getElementById('authEmail')
-      .value
-      .trim();
+      .value.trim();
 
   const password =
     document
       .getElementById('authPassword')
       .value;
 
-
-  const { error } =
+  const {data,error} =
     await supabaseClient.auth.signInWithPassword({
       email,
       password
     });
 
+  if(!error && data?.session){
+    saveSessionAccount(data.session);
+  }
 
   showAuthMessage(
     error
@@ -2212,21 +2184,19 @@ async function signIn() {
 }
 
 
-async function signUp() {
+async function signUp(){
 
   const email =
     document
       .getElementById('authEmail')
-      .value
-      .trim();
+      .value.trim();
 
   const password =
     document
       .getElementById('authPassword')
       .value;
 
-
-  if (password.length < 6) {
+  if(password.length<6){
 
     showAuthMessage(
       'Password must be at least 6 characters.'
@@ -2235,13 +2205,22 @@ async function signUp() {
     return;
   }
 
-
-  const { error } =
+  const {data,error} =
     await supabaseClient.auth.signUp({
+
       email,
-      password
+      password,
+
+      options:{
+        emailRedirectTo:
+          window.location.origin
+      }
+
     });
 
+  if(!error && data?.session){
+    saveSessionAccount(data.session);
+  }
 
   showAuthMessage(
     error
@@ -2252,24 +2231,592 @@ async function signUp() {
 }
 
 
-function showAuthMessage(msg) {
+function showAuthMessage(msg){
 
   const el =
     document.getElementById('authMessage');
 
-  el.textContent = msg;
-  el.style.display = 'block';
+  el.textContent=msg;
+  el.style.display='block';
 
 }
 
 
-async function initApp() {
+/* MULTIPLE ACCOUNTS */
 
-  const { data, error } =
-    await supabaseClient.auth.getSession();
+const ACCOUNT_STORE_KEY =
+  'englishStudySavedAccountsV1';
+
+let accountSwitching=false;
 
 
-  if (error) {
+function getSavedAccounts(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        ACCOUNT_STORE_KEY
+      ) || '[]'
+    );
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+function setSavedAccounts(accounts){
+
+  localStorage.setItem(
+    ACCOUNT_STORE_KEY,
+    JSON.stringify(accounts)
+  );
+
+}
+
+
+function sessionForUser(session){
+
+  if(
+    !session?.user?.id ||
+    !session?.access_token ||
+    !session?.refresh_token
+  ){
+
+    return null;
+
+  }
+
+  return {
+
+    user:{
+      id:session.user.id,
+      email:session.user.email || ''
+    },
+
+    access_token:
+      session.access_token,
+
+    refresh_token:
+      session.refresh_token
+
+  };
+
+}
+
+
+function saveSessionAccount(session){
+
+  const saved =
+    sessionForUser(session);
+
+  if(!saved)return;
+
+  const accounts =
+    getSavedAccounts()
+      .filter(
+        a =>
+          a.user.id !== saved.user.id
+      );
+
+  accounts.unshift(saved);
+
+  setSavedAccounts(
+    accounts.slice(0,10)
+  );
+
+  renderAccountList();
+
+}
+
+
+function removeSavedAccount(userId){
+
+  const accounts =
+    getSavedAccounts()
+      .filter(
+        a =>
+          a.user.id !== userId
+      );
+
+  setSavedAccounts(accounts);
+
+  renderAccountList();
+
+}
+
+
+function updateAccountUI(){
+
+  const el =
+    document.getElementById(
+      'accountEmail'
+    );
+
+  if(el){
+
+    el.textContent =
+      currentUser?.email ||
+      'Not signed in';
+
+  }
+
+  renderAccountList();
+
+}
+
+
+function renderAccountList(){
+
+  const list =
+    document.getElementById(
+      'accountList'
+    );
+
+  if(!list)return;
+
+  const accounts =
+    getSavedAccounts();
+
+  if(!accounts.length){
+
+    list.innerHTML =
+      '<div class="empty">No saved accounts yet.</div>';
+
+    return;
+
+  }
+
+  list.innerHTML =
+    accounts.map(a=>{
+
+      const isCurrent =
+        currentUser?.id === a.user.id;
+
+      return `
+
+        <div
+          class="saved-account ${isCurrent?'current':''}"
+        >
+
+          <div class="saved-account-info">
+
+            <div class="saved-account-email">
+              ${esc(a.user.email || 'Account')}
+            </div>
+
+            <div class="saved-account-status">
+              ${
+                isCurrent
+                  ? 'Current account'
+                  : 'Saved account'
+              }
+            </div>
+
+          </div>
+
+          ${
+            isCurrent
+
+            ? '<span class="badge">Active</span>'
+
+            : `
+              <button
+                class="primary"
+                onclick="switchToAccount('${a.user.id}')"
+              >
+                Switch
+              </button>
+            `
+          }
+
+          <button
+            class="account-remove"
+            onclick="forgetAccount('${a.user.id}')"
+            title="Remove this account from this device"
+          >
+            Remove
+          </button>
+
+        </div>
+
+      `;
+
+    }).join('');
+
+}
+
+
+function openAccountManager(){
+
+  closeSidebar();
+
+  renderAccountList();
+
+  document.getElementById(
+    'accountModal'
+  ).style.display='flex';
+
+  hideAddAccountForm();
+
+}
+
+
+function closeAccountManager(){
+
+  document.getElementById(
+    'accountModal'
+  ).style.display='none';
+
+  clearSwitchForm();
+
+}
+
+
+function showAddAccountForm(){
+
+  document.getElementById(
+    'addAccountForm'
+  ).style.display='block';
+
+  document.getElementById(
+    'showAddAccountBtn'
+  ).style.display='none';
+
+  document.getElementById(
+    'switchEmail'
+  ).focus();
+
+}
+
+
+function hideAddAccountForm(){
+
+  document.getElementById(
+    'addAccountForm'
+  ).style.display='none';
+
+  document.getElementById(
+    'showAddAccountBtn'
+  ).style.display='block';
+
+  clearSwitchForm();
+
+}
+
+
+function clearSwitchForm(){
+
+  const e =
+    document.getElementById(
+      'switchEmail'
+    );
+
+  const p =
+    document.getElementById(
+      'switchPassword'
+    );
+
+  const m =
+    document.getElementById(
+      'switchMessage'
+    );
+
+  if(e)e.value='';
+  if(p)p.value='';
+
+  if(m){
+
+    m.textContent='';
+    m.style.display='none';
+
+  }
+
+}
+
+
+function showSwitchMessage(msg){
+
+  const el =
+    document.getElementById(
+      'switchMessage'
+    );
+
+  el.textContent=msg;
+  el.style.display='block';
+
+}
+
+
+/* ADD ACCOUNT */
+
+async function addAccount(){
+
+  const email =
+    document
+      .getElementById('switchEmail')
+      .value.trim();
+
+  const password =
+    document
+      .getElementById('switchPassword')
+      .value;
+
+  if(!email || !password){
+
+    showSwitchMessage(
+      'Enter email and password.'
+    );
+
+    return;
+  }
+
+  if(currentUser){
+
+    const {data} =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(data?.session){
+
+      saveSessionAccount(
+        data.session
+      );
+
+    }
+
+  }
+
+  const {data,error} =
+    await supabaseClient
+      .auth
+      .signInWithPassword({
+        email,
+        password
+      });
+
+  if(error){
+
+    showSwitchMessage(
+      error.message
+    );
+
+    return;
+
+  }
+
+  if(data?.session){
+
+    saveSessionAccount(
+      data.session
+    );
+
+  }
+
+  closeAccountManager();
+
+}
+
+
+/* SWITCH ACCOUNT */
+
+async function switchToAccount(userId){
+
+  if(currentUser?.id===userId){
+
+    closeAccountManager();
+    return;
+
+  }
+
+  const target =
+    getSavedAccounts()
+      .find(
+        a =>
+          a.user.id === userId
+      );
+
+  if(!target)return;
+
+  accountSwitching=true;
+
+  const {data:current} =
+    await supabaseClient
+      .auth
+      .getSession();
+
+  if(current?.session){
+
+    saveSessionAccount(
+      current.session
+    );
+
+  }
+
+  const {data,error} =
+    await supabaseClient
+      .auth
+      .setSession({
+
+        access_token:
+          target.access_token,
+
+        refresh_token:
+          target.refresh_token
+
+      });
+
+  accountSwitching=false;
+
+  if(error){
+
+    removeSavedAccount(userId);
+
+    showSwitchMessage(
+      'This saved session expired. Please sign in to this account again.'
+    );
+
+    showAddAccountForm();
+
+    return;
+
+  }
+
+  if(data?.session){
+
+    saveSessionAccount(
+      data.session
+    );
+
+  }
+
+  closeAccountManager();
+
+  await loadData();
+
+}
+
+
+/* REMOVE SAVED ACCOUNT */
+
+function forgetAccount(userId){
+
+  const isCurrent =
+    currentUser?.id === userId;
+
+  if(isCurrent){
+
+    alert(
+      'You cannot remove the active account. Switch to another account first.'
+    );
+
+    return;
+
+  }
+
+  removeSavedAccount(userId);
+
+}
+
+
+/* SIGN OUT */
+
+async function signOut(){
+
+  const {error} =
+    await supabaseClient
+      .auth
+      .signOut();
+
+  if(error){
+
+    alert(
+      'Помилка виходу: ' +
+      error.message
+    );
+
+    return;
+
+  }
+
+  currentUser=null;
+
+  words=[];
+  rules=[];
+  writings=[];
+
+  editingWordId=null;
+  editingRuleId=null;
+  editingWritingId=null;
+
+  document.getElementById(
+    'authEmail'
+  ).value='';
+
+  document.getElementById(
+    'authPassword'
+  ).value='';
+
+  document.getElementById(
+    'authMessage'
+  ).style.display='none';
+
+  closeSidebar();
+  closeAccountManager();
+
+}
+
+
+function switchAccount(){
+
+  openAccountManager();
+
+}
+
+
+/* MOBILE SIDEBAR */
+
+function toggleSidebar(){
+
+  document
+    .getElementById('sidebar')
+    .classList.toggle('open');
+
+  document
+    .getElementById('sidebarOverlay')
+    .classList.toggle('show');
+
+}
+
+
+function closeSidebar(){
+
+  document
+    .getElementById('sidebar')
+    ?.classList.remove('open');
+
+  document
+    .getElementById('sidebarOverlay')
+    ?.classList.remove('show');
+
+}
+
+
+/* INIT */
+
+async function initApp(){
+
+  const {data,error} =
+    await supabaseClient
+      .auth
+      .getSession();
+
+  if(error){
 
     console.error(
       'Session error:',
@@ -2278,89 +2825,108 @@ async function initApp() {
 
   }
 
-
   currentUser =
     data?.session?.user || null;
 
+  document.getElementById(
+    'authScreen'
+  ).style.display =
+    currentUser
+      ? 'none'
+      : 'flex';
 
-  document
-    .getElementById('authScreen')
-    .style.display =
-      currentUser
-        ? 'none'
-        : 'flex';
+  document.getElementById(
+    'appShell'
+  ).style.display =
+    currentUser
+      ? 'flex'
+      : 'none';
 
+  if(currentUser){
 
-  document
-    .getElementById('appShell')
-    .style.display =
-      currentUser
-        ? 'flex'
-        : 'none';
+    const session =
+      data?.session;
 
+    if(session){
+
+      saveSessionAccount(
+        session
+      );
+
+    }
+
+    await loadData();
+
+  }
 
   updateAccountUI();
-
-
-  if (currentUser) {
-    await loadData();
-  }
 
 }
 
 
-supabaseClient.auth.onAuthStateChange(
-  async (_event, session) => {
+/* AUTH STATE */
 
-    currentUser =
-      session?.user || null;
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    async(_event,session)=>{
 
+      currentUser =
+        session?.user || null;
 
-    document
-      .getElementById('authScreen')
-      .style.display =
+      document.getElementById(
+        'authScreen'
+      ).style.display =
         currentUser
           ? 'none'
           : 'flex';
 
-
-    document
-      .getElementById('appShell')
-      .style.display =
+      document.getElementById(
+        'appShell'
+      ).style.display =
         currentUser
           ? 'flex'
           : 'none';
 
+      if(currentUser){
 
-    updateAccountUI();
+        if(session){
 
+          saveSessionAccount(
+            session
+          );
 
-    if (currentUser) {
-      await loadData();
+        }
+
+        await loadData();
+
+      }
+
+      updateAccountUI();
+
     }
-
-  }
-);
+  );
 
 
 /* ESCAPE HTML */
 
-function esc(s) {
+function esc(s){
 
-  return String(s ?? '')
-    .replace(
-      /[&<>"']/g,
-      m => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      }[m])
-    );
+  return s.replace(
+    /[&<>"']/g,
+    m => ({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      '"':'&quot;',
+      "'":'&#039;'
+    }[m])
+  );
 
 }
 
+
+/* START */
 
 initApp();
 
@@ -2368,3 +2934,4 @@ initApp();
 
 </body>
 </html>
+```
