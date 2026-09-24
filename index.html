@@ -2180,7 +2180,35 @@ async function deleteWord(id){
 
   await loadData();
 
+}async function deleteWriting(id){
+
+  if(!currentUser) return;
+
+  const confirmed = confirm(
+    'Are you sure you want to delete this writing?'
+  );
+
+  if(!confirmed) return;
+
+  const { error } = await supabaseClient
+    .from('writings')
+    .delete()
+    .eq('id', id)
+    .eq('user_id', currentUser.id);
+
+  if(error){
+    console.error(error);
+    alert('Failed to delete writing.');
+    return;
+  }
+
+  writings = writings.filter(
+    writing => writing.id !== id
+  );
+
+  renderWritings();
 }
+  
 
 
 /* GRAMMAR */
