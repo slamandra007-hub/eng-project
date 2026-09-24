@@ -2180,7 +2180,8 @@ async function deleteWord(id){
 
   await loadData();
 
-}async function deleteWriting(id){
+}
+  async function deleteWriting(id){
 
   if(!currentUser) return;
 
@@ -2208,7 +2209,7 @@ async function deleteWord(id){
 
   renderWritings();
 }
-  
+  window.deleteWriting = deleteWriting;
 
 
 /* GRAMMAR */
