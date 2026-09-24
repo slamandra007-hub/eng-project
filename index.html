@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -532,6 +533,7 @@ textarea{
 
 </style>
 </head>
+
 
 <body>
 
@@ -1253,13 +1255,10 @@ const SUPABASE_ANON_KEY =
   'sb_publishable_f7ae6u4JA3-x2lK3fajoIg_AxI4O2S_';
 
 
-const supabaseClient =
-  window.supabase
-    ? window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      )
-    : null;
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
 
 let currentUser=null;
